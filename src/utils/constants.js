@@ -1,0 +1,1 @@
+export const STOCK_SYMBOLS = ["AMZN", "NVDA", "AAPL", "AMD", "GOOGL", "AMC", "T", "NIO", "MMM", "NOK", "BABA"]
