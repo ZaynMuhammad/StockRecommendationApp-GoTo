@@ -1,6 +1,5 @@
-import './App.css';
-import { useEffect, useState } from 'react';
-import { Header, Button, StockUI } from './components';
+import './App.scss';
+import { Header, StockUI } from './components';
 
 function App() {
   return (

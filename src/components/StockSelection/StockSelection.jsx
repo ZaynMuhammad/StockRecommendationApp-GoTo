@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react"
 import Dropdown from "../Dropdown/Dropdown"
 import DateInput from "../DateInput/DateInput"
-import generateStockData  from '../../data/generateStockData'
 
+import './StockSelection.scss'
+    
 const StockSelection = ({ stockData, setDate, setSelectedStock }) => {
 
     return (
-        <form>
+        <form className="stockSelecetionContainer">
             <Dropdown
                 stockData={stockData}
                 setSelectedStock={setSelectedStock}

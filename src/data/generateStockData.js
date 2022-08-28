@@ -10,8 +10,6 @@ const generateStockData = (startDate) => {
     const genRandomNumSocialMediaCount = () => Math.floor(Math.random() * MAX_FOLLOWER_COUNT) 
     const endDate = new Date() - 1
     
-    console.log('start', startDate)
-
     if (startDate === undefined || startDate === null)
         startDate = getDateXDaysAgo(10)
             

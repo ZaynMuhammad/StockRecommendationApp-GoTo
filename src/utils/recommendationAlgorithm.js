@@ -44,14 +44,14 @@ const recommendationAlgo = (selectedStock, stockData, startDate) => {
                     reccomendationMap.set(data.price, { recommend: 'buy'})
                     break
                 case priceRatio <= 0.5:
-                    if (sumOfFollowersOnSocialMedia < 500000) {
+                    if (sumOfFollowersOnSocialMedia < 1000000) {
                         reccomendationMap.set(data.price, { recommend: 'buy'})
                     } else {
                         reccomendationMap.set(data.price, { recommend: 'hold'})
                     }
                     break
                 case priceRatio <= 1.2:
-                    if (sumOfFollowersOnSocialMedia < 500000) {
+                    if (sumOfFollowersOnSocialMedia < 1000000) {
                         reccomendationMap.set(data.price, { recommend: 'hold'})
                     } else {
                         reccomendationMap.set(data.price, { recommend: 'buy'})

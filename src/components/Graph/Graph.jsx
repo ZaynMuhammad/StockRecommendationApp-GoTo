@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import recommendationAlgo from '../../utils/recommendationAlgorithm';
+import getDateXDaysAgo from '../../utils/getDateXDaysAgo';
+import './Graph.scss'
 
 import {
     Chart as ChartJS,
@@ -36,8 +38,9 @@ const Graph = ({ stockData, selectedStock, date }) => {
         let xCoord = 0
         for (const data of stockData)
             if (data.symbol === selectedStock) {
-                labels.push(`${data.symbol} ${data.date}`)
+                labels.push(`${data.date}`)
                 let recommendation = stockRecommendation.get(data.price)
+                recommendation = recommendation === undefined ? '' : recommendation.recommend
                 dataPoints.push({
                     x: xCoord,
                     y: data.price,
@@ -45,12 +48,12 @@ const Graph = ({ stockData, selectedStock, date }) => {
                     twitter: data.socialMedia.twitter,
                     facebook: data.socialMedia.facebook,
                     instagram: data.socialMedia.instagram,
-                    recommendation: recommendation.recommend
+                    recommendation: recommendation
                 })
                 xCoord++
             }
     }
-
+    
     const options = {
         responsive: true,
         plugins: {
@@ -68,7 +71,7 @@ const Graph = ({ stockData, selectedStock, date }) => {
                         return `price: ${roundedPrice}$ linkedIn: ${context.raw.linkedIn} twitter: ${context.raw.twitter} facebook: ${context.raw.facebook} instagram: ${context.raw.instagram} recommend: ${context.raw.recommendation}`
                     }
                 }
-            }
+            },
         },
     };
     
@@ -85,7 +88,9 @@ const Graph = ({ stockData, selectedStock, date }) => {
     }
 
     return (
-        <Line options={options} data={data} />
+        <>
+            <Line className='container' options={options} data={data} />
+        </>
     )
 }
 

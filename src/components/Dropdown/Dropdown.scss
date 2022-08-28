@@ -1,0 +1,11 @@
+.dropdownContainer {
+    margin-left: 200px;
+    padding-right: 2em;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 400px) {
+    .dropdownContainer {
+        margin-bottom: 200px;
+    }
+}
