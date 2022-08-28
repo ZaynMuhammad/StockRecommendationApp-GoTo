@@ -6,8 +6,8 @@ const generateStockData = (startDate) => {
     const stockData = {}
     stockData.array = []
     const MAX_PRICE = 100.00
-    const MAX_FOLLOWER_COUNT = 100000
-    const genRandomNumSocialMediaCount = () => Math.floor(Math.random() * MAX_FOLLOWER_COUNT) 
+    const MAX_POST_COUNT = 1000
+    const genRandomNumSocialMediaCount = () => Math.floor(Math.random() * MAX_POST_COUNT) 
     const endDate = new Date() - 1
     
     if (startDate === undefined || startDate === null)
@@ -15,7 +15,6 @@ const generateStockData = (startDate) => {
             
     const dates = getDatesInRange(startDate, endDate)
 
-    // Remove time from date
     for (let i = 0; i < dates.length; i++)
         dates[i] = dates[i].toLocaleDateString()
     

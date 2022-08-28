@@ -4,22 +4,22 @@ import { STOCK_SYMBOLS } from "./constants"
 
 const getStockStats = (selectedStock, stockData, startDate) => {    
     let sumOfPriceForSelectedStock = 0
-    let sumOfFollowersOnSocialMedia = 0
+    let sumOfPostsOnSocialMedia = 0
     
     for (const data of stockData) {
         if (data.symbol === selectedStock) {
             sumOfPriceForSelectedStock += data.price
-            sumOfFollowersOnSocialMedia += data.socialMedia.linkedIn
-            sumOfFollowersOnSocialMedia += data.socialMedia.twitter
-            sumOfFollowersOnSocialMedia += data.socialMedia.facebook
-            sumOfFollowersOnSocialMedia += data.socialMedia.instagram
+            sumOfPostsOnSocialMedia += data.socialMedia.linkedIn
+            sumOfPostsOnSocialMedia += data.socialMedia.twitter
+            sumOfPostsOnSocialMedia += data.socialMedia.facebook
+            sumOfPostsOnSocialMedia += data.socialMedia.instagram
         }
     }
     
     const avgPriceForStock = sumOfPriceForSelectedStock / startDate
     return {
         avgPriceForStock,
-        sumOfFollowersOnSocialMedia
+        sumOfPostsOnSocialMedia
     }
 }
 
@@ -33,7 +33,7 @@ const recommendationAlgo = (selectedStock, stockData, startDate) => {
     const endDate = new Date() - 1
     const numberOfDays = getDatesInRange(startDate, endDate)
 
-    const { avgPriceForStock, sumOfFollowersOnSocialMedia } = getStockStats(selectedStock, stockData, numberOfDays.length)
+    const { avgPriceForStock, sumOfPostsOnSocialMedia } = getStockStats(selectedStock, stockData, numberOfDays.length)
     const reccomendationMap = new Map()
     
     for (const data of stockData) {
@@ -44,14 +44,14 @@ const recommendationAlgo = (selectedStock, stockData, startDate) => {
                     reccomendationMap.set(data.price, { recommend: 'buy'})
                     break
                 case priceRatio <= 0.5:
-                    if (sumOfFollowersOnSocialMedia < 1000000) {
+                    if (sumOfPostsOnSocialMedia > 1500) {
                         reccomendationMap.set(data.price, { recommend: 'buy'})
                     } else {
                         reccomendationMap.set(data.price, { recommend: 'hold'})
                     }
                     break
                 case priceRatio <= 1.2:
-                    if (sumOfFollowersOnSocialMedia < 1000000) {
+                    if (sumOfPostsOnSocialMedia < 1000) {
                         reccomendationMap.set(data.price, { recommend: 'hold'})
                     } else {
                         reccomendationMap.set(data.price, { recommend: 'buy'})
